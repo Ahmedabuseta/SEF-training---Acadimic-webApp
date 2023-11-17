@@ -1,0 +1,38 @@
+.main-article-sec{
+    width: 100%;
+    position: relative;
+    color: white;
+}
+.users-sec{
+    background-color: rgba(0, 0, 0, .3);
+    padding: 20px;
+    border-radius: 5px;
+
+}
+.users-sec h5{
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    font-size: 17px;
+    padding: 20px 10px;
+    font-weight: 500;
+
+}
+.users-sec h5 a:hover{
+    color: #bf9b30;
+}
+.users-sec ul{
+    padding: 10px 10px;
+
+}
+.users-sec a{
+    text-decoration: none;
+    color: white;
+}
+.users-sec li{
+    list-style: none;
+    font-size:15px ;
+    padding: 4px 0;
+    font-weight: 400;
+
+    
+}
