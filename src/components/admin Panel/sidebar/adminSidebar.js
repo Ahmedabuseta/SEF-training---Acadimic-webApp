@@ -5,7 +5,7 @@ function AdminSideBar(){
   const [cirtificateBtn ,setCertifiCateeBtn] = useState(false)
     return(
         <div class="users-sec" style={{transform:'translateY(50px)'}}>
-        <div> 
+        <div className='parent-users'> 
           <h5 onClick={()=>setCertifiCateeBtn(false)}><Link to="/adminPanel/users">Users</Link></h5>
 
             {/*  */}
@@ -17,10 +17,23 @@ function AdminSideBar(){
             <li onClick={()=>setCertifiCateeBtn(true)}><Link to="/adminPanel/userstudents">Students</Link></li>
           </ul>
           </div>
+          <div className='drop container'>
+          <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown button
+            </button>
+            <ul className='dropdown-menu'>
+            <li ><Link className='dropdown-item text-dark' to="#">Admins</Link></li>
+            <li><Link className='dropdown-item text-dark' to="#">Editors</Link></li>
+            <li><Link className='dropdown-item text-dark' to="#">Editors</Link></li>
+            <li><Link className='dropdown-item text-dark' to="#">Students</Link></li>
+          </ul>
+        </div>
+          </div>
         </div>
 
 
-        <div>
+        <div className='parent-users'>
           <h5 onClick={()=>setCertifiCateeBtn(false)}><Link to="/adminPanel/articles">Articles</Link></h5>
             
           <div class="lg-ul">
@@ -32,7 +45,7 @@ function AdminSideBar(){
           </div>
         </div>
 
-        <div>
+        <div className='parent-users'>
           <h5 onClick={()=>setCertifiCateeBtn(false)}><Link to="/adminPanel/Jops">Jops</Link></h5>
         
           <div class="lg-ul">
@@ -43,7 +56,7 @@ function AdminSideBar(){
           </div>
         </div>
 
-        <div>
+        <div className='parent-users '>
           <h5 onClick={()=>setCertifiCateeBtn(false)}><Link to="/adminPanel/courses">Courses</Link></h5>
             
           <div class="lg-ul">

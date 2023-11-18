@@ -4,28 +4,21 @@
     --dark-color: rgba(0, 0, 0, .4);;
 }
 
-/* body {
-    overflow-x: hidden;
-    font-family: 'Jost',sans-serif;
-    background-color: var(--dark-color);
-    width: 100vw;
-    /* background-image: url(../assets/secondary_background.jpg); */
-    /* background-size: cover;
-    background-attachment: fixed;
-    position: relative;
-} */ */
-/* .profileoverlay{
+
+
+.profileoverlay{
     background-color: rgba(29,29,29,.9);
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: -1;
-} */
+}
 .pen{
-    display: block;
-    margin-left: 95px;
+    position: absolute;
+    display: inline-block;
+    bottom: -80%;
+    left: 100%;
     font-size: large;
     background:none;
     border: none;
@@ -41,7 +34,6 @@
 .edit{
     background-color: #bf9b30;
     color: #FFE;
-    
 }
 .profiledata .profilefirst{
     background-color: var(--dark-color);
@@ -117,4 +109,27 @@
 }
 .resume1 .none{
     display: none;
+}
+.resume1 button{
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    width: fit-content;
+}
+@media(max-width:500px){
+    .profiledata h3{
+        font-size: 16px;
+        top: 95%;
+        transform: translateY(-95%);
+    }
+    .pen{
+        position: absolute;
+        display: inline-block;
+        bottom: -80%;
+        left: 40%;
+        font-size: large;
+        background:none !important;
+        border: none;
+    }
+    
 }

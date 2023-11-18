@@ -28,9 +28,10 @@ const LoginComponent = () => {
     console.log(users);
     e.preventDefault();
     const foundUser = users.find(user => user.email === userid && user.password === userpassword);
-
+    console.log(foundUser.userId)
     if (foundUser) {
-      dispatch(setOnline(foundUser.id));
+      dispatch(setOnline(foundUser));
+      console.log(foundUser)
       setTimeout(() => {
         Navigate("/");
       }, 1000);

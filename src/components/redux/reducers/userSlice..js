@@ -19,7 +19,7 @@ export const UsersSlice= createSlice({
         email: 'ahmed@gmail',
         role: 'instructor',
         mobNum: '01090251773',
-        userId: 2,
+        userId: 0,
         password: '123456',
         passwordConfirmation: '123456',
         score: 20,
@@ -32,7 +32,7 @@ export const UsersSlice= createSlice({
         email: 'ahmed1@gmail',
         role: 'Admin',
         mobNum: '01090251773',
-        userId: 2,
+        userId: 1,
         password: '123456',
         passwordConfirmation: '123456',
         score: 20,
@@ -61,10 +61,15 @@ export const UsersSlice= createSlice({
             : state.push({...action.payload,id:state.length})
         },
         setOnline:(state,action)=>{
-            const index = state.findIndex(user=>user.id == action.payload)
-            state[index].online = true;
+            const index = state.findIndex(user=>user.userId == action.payload.userId)
             
+            state[index] = {...action.payload,online:true}
+            return state
              
+        },
+        logOut:(state,action)=>{
+            const index = state.findIndex(user=>user.userId == action.payload)
+            state[index].online = false;
         },
         removeUser:(state,action)=>{
             return state.filter(user=>user.userId!==action.payload.userId)
@@ -76,5 +81,5 @@ export const UsersSlice= createSlice({
     //     })}
 })
 
-export const {addUser,setOnline , removeUser} = UsersSlice.actions;
+export const {addUser,setOnline,logOut , removeUser} = UsersSlice.actions;
 export default UsersSlice.reducer;

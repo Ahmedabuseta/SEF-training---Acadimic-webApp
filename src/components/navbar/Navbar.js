@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../redux/reducers/userSlice.";
 // import 'bootstrap/dist/js/bootstrap.min.js';
 // import 'bootstrap/dist/umd/popper.min.js';
 
@@ -19,40 +20,41 @@ const Navbar =()=>{
   }
   const dispatch = useDispatch()
   const users = useSelector(state=>state.users)
-  const user = users.filter(user=>user.online==true)[0]
-  console.log(user.online);
+  const user = users.filter(user=>user?.online === true)[0]
+  console.log(user);
   return(
       <>
-            <ul className="navbar-nav bg-dark text-light p-1 flex-wrap  ps-3 pe-3 d-flex justify-content-end gap-3 flex-row ms-auto">
+            <ul className="navbar-nav bg-dark text-light p-1 flex-wrap  ps-3 pe-3 d-flex justify-content-end position-relative gap-3 flex-row ms-auto" style={{zIndex:'566666666666'}}>
           {
-            !user.online && <li className="nav-item p-0">
+            !user?.online && <li className="nav-item p-0">
             <Link className="nav-link  p-0" to="/login"  >LOGIN</Link>
           </li>
           }
+         
           {
-            user.online && <li className="nav-item  p-0">
-            <Link className="nav-link  p-0" to="/" onClick={()=>localStorage.setItem('online',false)}>LOGOUT</Link>
-          </li>
-          }
-          {
-            user.online &&<li className="nav-item  p-0">
-            <Link className="nav-link  p-0" to="/profile">PROFILE</Link>
-          </li>
-          }
-          {
-            user.online && user.role=='Admin'&&
-          <li className="nav-item  p-0">
+            user?.online && user.role=='Admin'&&<li className="nav-item  p-0">
             <Link to='/adminPanel' className="nav-link  p-0">ADMIN PANEL</Link>
           </li>
+          
           } 
-          {user.online && user.role=='Student'&&<li className="nav-item  p-0">
-            <Link to='/studentPanel' className="nav-link  p-0">STUDENT PANEL</Link>
+          {user?.online && user.role=='Student'&&<li className="nav-item  p-0">
+            <Link to='/StudentPanel' className="nav-link  p-0">STUDENT PANEL</Link>
           </li>
           } 
-          {user.online && user.role=='instructor'&& <li className="nav-item  p-0">
+          {user?.online && user.role=='instructor'&& <li className="nav-item  p-0">
             <Link to='/instructorPanel' className="nav-link  p-0">INSTRUCTOR PANEL</Link>
           </li>
           } 
+           {
+            user?.online && <li className="nav-item  p-0">
+            <Link className="nav-link  p-0" to="/"onClick={()=>dispatch(logOut(user.userId))} >LOGOUT</Link>
+          </li>
+          }
+          {
+            user?.online && <li className="nav-item  p-0">
+            <Link className="nav-link  p-0" to="/profile">PROFILE</Link>
+          </li>
+          }
           
         </ul>
       <div className="container-md navbar-component mb-3 ">
@@ -100,7 +102,7 @@ const Navbar =()=>{
             <Link className="nav-link ms-2" to="/apps">APPS</Link>
           </li>
           {
-            user.online && <li className="nav-item">
+            user?.online && <li className="nav-item">
             <Link className="nav-link ms-2" to="/jobs">JOBS</Link>
           </li>
           }

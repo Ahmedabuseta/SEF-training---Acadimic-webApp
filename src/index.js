@@ -15,9 +15,6 @@ root.render(
     <Provider store={Store}>
       <BrowserRouter>
         <App />
-        <Routes>
-       <Route path='/login' element={<LoginComponent/>}/>
-       </Routes>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
