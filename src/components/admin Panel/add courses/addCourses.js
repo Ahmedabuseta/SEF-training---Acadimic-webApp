@@ -20,8 +20,7 @@ function AddCourses(){
         courseMaterials: '',
         publishingDate: '',
         instructor: '',
-        pubplish:false,
-        draft:false,
+        status:null,
         uploadedFile:null,
       });
     const dispatch = useDispatch()
@@ -35,7 +34,32 @@ function AddCourses(){
       const saveData = () => {
         console.log('Course Details:', courseDetails);
         setCourseDetails({ ...courseDetails, draft: true });
-        dispatch(addCourse(courseDetails))
+        const required = Object.keys(courseDetails).every(key => {
+          if (courseDetails[key] !== undefined && courseDetails[key] !== '') {
+            return true;
+          }else{
+            return false
+          }
+        })
+        required?dispatch(addCourse(courseDetails)):window.alert('fill all fields')
+        setCourseDetails({
+          courseName: '',
+          level: '',
+          numOfLessons: '',
+          language: '',
+          startDate: '',
+          duration: '',
+          certificate: '',
+          courseIntroduction: '',
+          courseAssessment: '',
+          courseRequirements: '',
+          courseMaterials: '',
+          publishingDate: '',
+          instructor: '',
+          pubplish:false,
+          draft:false,
+          uploadedFile:null,
+        })
         // Implement logic to save data to a database or perform other actions
         // For example: Send courseDetails to an API endpoint for storage
       };

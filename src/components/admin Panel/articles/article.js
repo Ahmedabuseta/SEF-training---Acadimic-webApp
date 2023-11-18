@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeArticle } from "../../redux/reducers/ArticlesSlice.";
 import Pagination from "../../pagination/pagination";
+import moment from "moment";
 function Articles(){
 
   const articles = useSelector(state=>state.articles)
@@ -13,6 +14,7 @@ function Articles(){
   //     dispatch(fetchArticles())
   // }
   //     ,[])
+  const date =moment()
 
     return(
         <>
@@ -41,12 +43,15 @@ function Articles(){
                 {
                   articles?.map((article,index)=>(
                     <tr key={index}>
-                      <td>{article.title}</td>
+                      <td>{article.articleTitle}</td>
                       <td>{article.category}</td>
                       <td><button className={article.status?"":"bg-secondary text-light"}>
                         {article.status ? "published" : "draft"}
                         </button></td>
-                      <td>{article.date}<br/>{article.time}</td>
+                      <td>{ 
+                      moment(article.publishingDate, 'YYYY-MM-DD').format('D MMMM YYYY')
+                      }<br/>{""}
+                      </td>
                       <td>
                       <Link href="">
                         <FontAwesomeIcon icon={faPenToSquare} className='text-warning' />

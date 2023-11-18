@@ -40,7 +40,7 @@ function Jobs(){
                     {
                       jobs?.map((job,index)=>(
                         <tr key={index} className="text-light">
-                          <td>{job.company}</td>
+                          <td>{job.companyName}</td>
                           <td>{job.position}</td>
                           <td><button className="bg-secondary text-light">
                             {job.status ? "opened":"closed"}

@@ -38,7 +38,7 @@ function Users(){
                     {
                       users?.map((user,index)=>(
                         <tr key={index}>
-                          <td>{user.name}</td>
+                          <td>{user.fName} {user.lName}</td>
                           <td><button className={user.status ? "" :"bg-secondary text-light"}>
                           {user.status ? "Active" : "inActive"}</button></td>
                           <td>{user.userId}</td>

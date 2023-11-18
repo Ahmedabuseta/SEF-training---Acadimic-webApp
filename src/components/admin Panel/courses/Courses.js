@@ -39,7 +39,7 @@ function Courses(){
                   {
                     courses?.map((course,index)=>(
                     <tr key={index}>
-                      <td>{course.title}</td>
+                      <td>{course.courseName}</td>
                       <td><button className={course.status?"":"bg-secondary text-light"}>
                         {course.status?'open':"ended"}
                         </button></td>

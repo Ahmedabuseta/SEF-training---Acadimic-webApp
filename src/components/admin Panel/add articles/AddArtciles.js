@@ -26,7 +26,23 @@ function AddArticles(){
     
       const saveData = () => {
         setArticleDetails({ ...articleDetails, statuse: false });
-        dispatch(addArticle(articleDetails))
+        const required = Object.keys(articleDetails).every(key => {
+          if (articleDetails[key] !== undefined && articleDetails[key] !== '') {
+            return true;
+          }else{
+            return false
+          }
+        })
+        required?dispatch(addArticle(articleDetails)):window.alert("fill all fields")
+        
+        setArticleDetails({
+            articleTitle: '',
+            category: '',
+            content: '',
+            publishingDate: '',
+            uploadedFile: null ,
+            status:null,
+          });
         // Implement logic to save data to a database or perform other actions
         // For example: Send articleDetails to an API endpoint for storage
       };
@@ -79,7 +95,7 @@ function AddArticles(){
                         <label for="inputState" class="form-label text-light fw-medium">Publishing Date</label>
                         <div class="input-group mb-3 ">
                             <span class="input-group-text border-0 text-white bg-secondary opacity-75"><FontAwesomeIcon icon={faCalendar } className='text-warning ' /></span>
-                            <input type="text" class="form-control border-0  opacity-75 " aria-describedby="basic-addon1"
+                            <input type="date" class="form-control border-0  opacity-75 " aria-describedby="basic-addon1"
                             id="publishingDate"
                             value={articleDetails.publishingDate}
                             onChange={handleInputChange}
@@ -97,7 +113,7 @@ function AddArticles(){
 
             <div class="buttons_article d-flex justify-content-end mt-4 md-d-flex md-flex-column mb-3">
                 <button type="button" class="btn btn_cancel btn_article btn-secondary text-light fw-bold rounded-1 fs-9 me-2">CANCEL</button>
-                <button type="button" class="btn btn_save btn_article btn-warning text-light fw-bold rounded-1">SAVE</button>
+                <button type="button" class="btn btn_save btn_article btn-warning text-light fw-bold rounded-1" onClick={saveData}>SAVE</button>
                 <button type="button" class="btn btn_publish2 btn_article btn-warning text-light fw-bold rounded-1 d-none">PUBLISH</button>
             </div>
         </div>

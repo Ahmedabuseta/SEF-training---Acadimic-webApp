@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Dragdrop from '../../Drag drop/Dragdrop';
 import './AddJob.css';
+import { useDispatch } from 'react-redux';
+import { addJob } from '../../redux/reducers/JobSlice.';
 
 function AddJob() {
   const [formData, setFormData] = useState({
@@ -17,9 +19,10 @@ function AddJob() {
     currency: '',
     jobDescription: '',
     jobRequirements: '',
-    skills: ''
+    skills: '',
+    status:true,
 });
-
+    const dispatch =useDispatch()
 const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData(prevState => ({
@@ -32,6 +35,14 @@ const handleSubmit = (e) => {
     e.preventDefault();
     // Use formData object for further processing (e.g., sending to API)
     console.log(formData);
+    const required = Object.keys(formData).every(key => {
+        if (formData[key] !== undefined && formData[key] !== '') {
+            return true;
+        }else{
+          return false
+        }
+      })
+      required?dispatch(addJob(formData)):window.alert('please fill all input fields');
     // Reset form data after submission
     setFormData({
         companyName: '',
