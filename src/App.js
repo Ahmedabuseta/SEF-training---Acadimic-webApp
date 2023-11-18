@@ -28,7 +28,7 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const users = useSelector(state=>state.users)
-  const user = users.filter(user=>user.email == 'ahmed1@gmail')[0]
+  const user = users.filter(user=>user?.online == true)[0]
     return (
     <>
     <div className="App">
@@ -54,42 +54,41 @@ function App() {
        <Route path='/startups' element={<News/>}/>
        <Route path='/apps' element={<News/>}/>
        <Route path='/login' element={<LoginComponent/>}/>
-       
-      {user.online && user.role === 'Student'&& <Route path='/jobs' element={<FindJobs/>}/>}
-      {user.online && (user.role === 'Student' || user.role === 'instructor' || user.role === 'Admin') && (
-  <Route path="/profile" element={<Profile />} />
-)}    
-       {user.online && user.role === 'Student'&& <Route path='/createCv' element={<CvShape/>}/>}
-      
-       
-      {user.online &&user.role === 'Student' &&<Route path='/StudentPanel' element={<PersonalPage/>}/>}
-      {/* {user.online &&user.role === 'instructor' &&<Route path='/instructorPanel' element={<PersonalPage/>}/>} */}
+       {console.log(user?.role )}
+      {user?.online && user?.role === 'Student'&& <Route path='/jobs' element={<FindJobs/>}/>}
+      {user?.online && (user?.role === 'Student' || user?.role === 'instructor' || user?.role === 'Admin') && (
+      <Route path="/profile" element={<Profile />} />
+      )}    
+        {user?.online && user?.role === 'Student'&& (<Route path='/createCv' element={<CvShape/>}/>)}
+        
+        {user?.online && user?.role === 'Student' &&<Route path='/StudentPanel' element={<PersonalPage/>}/>}
+        {user?.online &&user?.role === 'instructor' &&<Route path='/instructorPanel' element={<PersonalPage/>}/>}
 
-      {user.online &&user.role === 'Admin' && (
-        <Route path='/adminPanel' element={<AdminPanel/>}>
-       <Route path="articles" element={<Articles />} />
-            <Route
-              path="addarticles"
-              element={<AddArticles />}
-            />
-            <Route path="jobs" element={<Jobs />} />
-            <Route path="addjobs" element={<AddJob />} />
-            <Route
-              path="addcertificate"
-              element={<AddCertificateDetails />}
-            />
-            <Route path="courses" element={<Courses />} />
-            <Route path="addcourses" element={<AddCourses />} />
-            <Route path="users" element={<Users />} />
-            <Route path="addusers" element={<AddUser />} />
-            <Route path="application" element={<Applications />} />
-            <Route
-              path="userstudents"
-              element={<UserStudents />}
-            />
+        {user?.online &&user?.role === 'Admin' && (
+          <Route path='/adminPanel' element={<AdminPanel/>}>
+        <Route path="articles" element={<Articles />} />
+              <Route
+                path="addarticles"
+                element={<AddArticles />}
+              />
+              <Route path="jobs" element={<Jobs />} />
+              <Route path="addjobs" element={<AddJob />} />
+              <Route
+                path="addcertificate"
+                element={<AddCertificateDetails />}
+              />
+              <Route path="courses" element={<Courses />} />
+              <Route path="addcourses" element={<AddCourses />} />
+              <Route path="users" element={<Users />} />
+              <Route path="addusers" element={<AddUser />} />
+              <Route path="application" element={<Applications />} />
+              <Route
+                path="userstudents"
+                element={<UserStudents />}
+              />
 
-       </Route>
-      )}
+        </Route>
+        )}
 
        
     <Route path='*' element={<News/>} />

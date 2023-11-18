@@ -45,9 +45,9 @@ const Navbar =()=>{
             <Link to='/instructorPanel' className="nav-link  p-0">INSTRUCTOR PANEL</Link>
           </li>
           } 
-           {
-            user?.online && <li className="nav-item  p-0">
-            <Link className="nav-link  p-0" to="/"onClick={()=>dispatch(logOut(user.userId))} >LOGOUT</Link>
+          {
+            user?.online && user.role=='Student' && <li className="nav-item  p-0">
+            <Link className="nav-link  p-0" to="/createCv">CREATE CV</Link>
           </li>
           }
           {
@@ -55,6 +55,12 @@ const Navbar =()=>{
             <Link className="nav-link  p-0" to="/profile">PROFILE</Link>
           </li>
           }
+           {
+            user?.online && <li className="nav-item  p-0">
+            <Link className="nav-link  p-0" to="/"onClick={()=>dispatch(logOut(user.userId))} >LOGOUT</Link>
+          </li>
+          }
+          
           
         </ul>
       <div className="container-md navbar-component mb-3 ">
